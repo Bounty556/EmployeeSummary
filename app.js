@@ -98,12 +98,8 @@ const followupQuestion = [
 
 let employees = [];
 
-start();
-
 // Begin question chain for user
-function start() {
-    askManagerInfo();
-}
+askManagerInfo();
 
 // Grabs the managers info
 function askManagerInfo() {
@@ -111,6 +107,7 @@ function askManagerInfo() {
         .then(answers => {
             let {name, id, email, officeNumber} = answers;
 
+            // Add manager to employee array
             employees.push(new Manager(name, id, email, officeNumber));
 
             askFollowupQuestion();
@@ -142,6 +139,7 @@ function askEngineerInfo() {
         .then(answers => {
             let {name, id, email, github} = answers;
 
+            // Add engineer to employee array
             employees.push(new Engineer(name, id, email, github));
 
             askFollowupQuestion();
@@ -153,6 +151,7 @@ function askInternInfo() {
         .then(answers => {
             let {name, id, email, school} = answers;
 
+            // Add intern to employee array
             employees.push(new Intern(name, id, email, school));
 
             askFollowupQuestion();
@@ -164,13 +163,15 @@ function renderHTML() {
     const generatedHTML = render(employees);
     let mainTemplateHTML = fs.readFileSync(path.join(templatesDir, 'main.html'), 'utf-8');
 
+    // Insert our generated HTML into the main template HTML
     mainTemplateHTML = mainTemplateHTML.replace(/{{ team }}/, generatedHTML);
 
+    // Make the output folder if it doesn't exist yet
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR);
     }
 
     fs.writeFileSync(outputPath, mainTemplateHTML);
 
-    console.log('Done');
+    console.log(`Done! Your generated team.html file can be found in the ${OUTPUT_DIR} folder.`);
 }
