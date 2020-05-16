@@ -15,7 +15,8 @@ const managerQuestions = [
     {
         type: 'input',
         name: 'name',
-        message: 'What is the name of your team\'s manager?'
+        message: 'What is the name of your team\'s manager?',
+        validate: nameValidation
     },
     {
         type: 'input',
@@ -25,12 +26,14 @@ const managerQuestions = [
     {
         type: 'input',
         name: 'email',
-        message: 'What is your team manager\'s email?'
+        message: 'What is your team manager\'s email?',
+        validate: emailValidation
     },
     {
-        type: 'number',
+        type: 'input',
         name: 'officeNumber',
-        message: 'What is the number of the office that they manage?'
+        message: 'What is the number of the office that they manage?',
+        validate: numberValidation
     }
 ];
 
@@ -38,7 +41,8 @@ const engineerQuestions = [
     {
         type: 'input',
         name: 'name',
-        message: 'What is the name of the Engineer?'
+        message: 'What is the name of the Engineer?',
+        validate: nameValidation
     },
     {
         type: 'input',
@@ -48,12 +52,14 @@ const engineerQuestions = [
     {
         type: 'input',
         name: 'email',
-        message: 'What is the Engineer\'s email?'
+        message: 'What is the Engineer\'s email?',
+        validate: emailValidation
     },
     {
         type: 'input',
         name: 'github',
-        message: 'What is the Engineer\'s github username?'
+        message: 'What is the Engineer\'s github username?',
+        validate: userNameValidation
     }
 ];
 
@@ -61,7 +67,8 @@ const internQuestions = [
     {
         type: 'input',
         name: 'name',
-        message: 'What is the name of the Intern?'
+        message: 'What is the name of the Intern?',
+        validate: nameValidation
     },
     {
         type: 'input',
@@ -71,12 +78,14 @@ const internQuestions = [
     {
         type: 'input',
         name: 'email',
-        message: 'What is the Intern\'s email?'
+        message: 'What is the Intern\'s email?',
+        validate: emailValidation
     },
     {
         type: 'input',
         name: 'school',
-        message: 'What school does the Intern attend?'
+        message: 'What school does the Intern attend?',
+        validate: nameValidation
     }
 ];
 
@@ -174,4 +183,24 @@ function renderHTML() {
     fs.writeFileSync(outputPath, mainTemplateHTML);
 
     console.log(`Done! Your generated team.html file can be found in the ${OUTPUT_DIR} folder.`);
+}
+
+function nameValidation(userInput) {
+    // Only use characters and spaces
+    return /^[a-zA-Z ]+$/.test(userInput)
+}
+
+function numberValidation(userInput) {
+    // Only use numbers
+    return /^[1234567890]+$/.test(userInput);
+}
+
+function userNameValidation(userInput) {
+    // Don't use spaces
+    return /^[^\s]+$/.test(userInput);
+}
+
+function emailValidation(userInput) {
+    // any number of characters, then an @ symbol, then any number of characters, then a period, than any number of characters
+    return /^[^@\s]+@[a-zA-Z]+.[a-zA-Z]+$/.test(userInput);
 }
