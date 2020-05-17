@@ -29,6 +29,8 @@ To start:
 node app.js
 ```
 
+[Example](https://drive.google.com/file/d/1K5MMTq9H4jt5gD4HzwWl8VzCVaEUp3Lw/view)
+
 ## License
 MIT License
 
@@ -64,5 +66,4 @@ npm run test
 ```
 
 ## Questions
-Inquiries? Send them to:
-    * ![Github](https://avatars1.githubusercontent.com/u/12930451?v=4&s=32) jacobmayday@gmail.com
+Inquiries? Send them to: jacobmayday@gmail.com ![Github](https://avatars1.githubusercontent.com/u/12930451?v=4&s=32)
