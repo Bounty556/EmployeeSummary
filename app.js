@@ -6,7 +6,8 @@ const path = require("path");
 const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "team.html");
+const outputHTML = path.join(OUTPUT_DIR, "team.html");
+const outputCSS = path.join(OUTPUT_DIR, "style.css");
 const templatesDir = path.resolve(__dirname, 'templates');
 
 const render = require("./lib/htmlRenderer");
@@ -170,17 +171,15 @@ function askInternInfo() {
 // Grabs template main html and inserts the generated html into it, finally writing it out to main.html
 function renderHTML() {
     const generatedHTML = render(employees);
-    let mainTemplateHTML = fs.readFileSync(path.join(templatesDir, 'main.html'), 'utf-8');
-
-    // Insert our generated HTML into the main template HTML
-    mainTemplateHTML = mainTemplateHTML.replace(/{{ team }}/, generatedHTML);
+    const cssTemplate = fs.readFileSync(path.join(templatesDir, 'style.css'), 'utf-8');
 
     // Make the output folder if it doesn't exist yet
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR);
     }
 
-    fs.writeFileSync(outputPath, mainTemplateHTML);
+    fs.writeFileSync(outputHTML, generatedHTML);
+    fs.writeFileSync(outputCSS, cssTemplate);
 
     console.log(`Done! Your generated team.html file can be found in the ${OUTPUT_DIR} folder.`);
 }
