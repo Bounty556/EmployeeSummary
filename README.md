@@ -6,12 +6,12 @@
 This tool is used to generate an HTML page that displays a summary of a team of Engineers and Interns, led by a single manager. The employee information is obtained by asking the user questions in the console. Each employee also has information that's unique to them, for example Engineers have Github usernames, where as Interns have schools that they attend.
 
 ## Table of Contents
-    * [Installation](#installation)
-    * [Usage](#usage)
-    * [License](#license)
-    * [Contributing](#contributing)
-    * [Tests](#tests)
-    * [Questions](#questions)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
 
 ## Installation
 To install:
